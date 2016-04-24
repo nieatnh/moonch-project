@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< 66d5a39b35ebba3a055f4be03e970f67638df01f
 guid: 5483a73fdbce2914a857dec7ef192544
 timeCreated: 1461513312
+=======
+guid: 364f9e708edbd6b479bd2163698327a9
+timeCreated: 1461523661
+>>>>>>> Changed font styles for text
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 3

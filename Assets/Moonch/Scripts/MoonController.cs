@@ -14,16 +14,16 @@ public class MoonController : MonoBehaviour {
 
 		//GameObject cardBoardObject = GameObject.Find ("/Moon/CardObject");
 		//cardBoardObject.transform.position = moon.transform.position;
-		GameObject cardBoardObject1 = GameObject.Find ("/Moon/CardObject1");
-		GameObject cardBoardObject2 = GameObject.Find ("/Moon/CardObject2");
-		GameObject cardBoardObject3 = GameObject.Find ("/Moon/CardObject3");
-		GameObject cardBoardObject4 = GameObject.Find ("/Moon/CardObject4");
-		GameObject cardBoardObject5 = GameObject.Find ("/Moon/CardObject5");
-		GameObject cardBoardObject6 = GameObject.Find ("/Moon/CardObject6");
-		GameObject cardBoardObject7 = GameObject.Find ("/Moon/CardObject7");
-		GameObject cardBoardObject8 = GameObject.Find ("/Moon/CardObject8");
-		GameObject cardBoardObject9 = GameObject.Find ("/Moon/CardObject9");
-		GameObject cardBoardObject10 = GameObject.Find ("/Moon/CardObject10");
+		GameObject cardBoardObject1 = GameObject.Find ("/Asteroids/CardObject1");
+		GameObject cardBoardObject2 = GameObject.Find ("/Asteroids/CardObject2");
+		GameObject cardBoardObject3 = GameObject.Find ("/Asteroids/CardObject3");
+		GameObject cardBoardObject4 = GameObject.Find ("/Asteroids/CardObject4");
+		GameObject cardBoardObject5 = GameObject.Find ("/Asteroids/CardObject5");
+		GameObject cardBoardObject6 = GameObject.Find ("/Asteroids/CardObject6");
+		GameObject cardBoardObject7 = GameObject.Find ("/Asteroids/CardObject7");
+		GameObject cardBoardObject8 = GameObject.Find ("/Asteroids/CardObject8");
+		GameObject cardBoardObject9 = GameObject.Find ("/Asteroids/CardObject9");
+		GameObject cardBoardObject10 = GameObject.Find ("/Asteroids/CardObject10");
 
 		ArrayList list = new ArrayList ();
 		//list.Add (cardBoardObject);
@@ -54,7 +54,7 @@ public class MoonController : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		//Debug.Log ("on trigger entert");
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" ){
 			Application.LoadLevel ("FinalScene");
 		}   
 	}
