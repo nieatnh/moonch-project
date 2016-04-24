@@ -12,7 +12,7 @@ public class MoonController : MonoBehaviour {
 
 		GameObject moon = GameObject.Find ("/Moon");
 
-		//GameObject cardBoardObject = GameObject.Find ("/Moon/CardObject");
+		GameObject cardBoardObject = GameObject.Find ("/Asteroids/CardObject");
 		//cardBoardObject.transform.position = moon.transform.position;
 		GameObject cardBoardObject1 = GameObject.Find ("/Asteroids/CardObject1");
 		GameObject cardBoardObject2 = GameObject.Find ("/Asteroids/CardObject2");
@@ -26,7 +26,7 @@ public class MoonController : MonoBehaviour {
 		GameObject cardBoardObject10 = GameObject.Find ("/Asteroids/CardObject10");
 
 		ArrayList list = new ArrayList ();
-		//list.Add (cardBoardObject);
+		list.Add (cardBoardObject);
 		list.Add (cardBoardObject1);
 		list.Add (cardBoardObject2);
 		list.Add (cardBoardObject3);
@@ -45,7 +45,7 @@ public class MoonController : MonoBehaviour {
 		Random random = new Random ();
 		for (int i = 0; i<list.Count; i++) {
 			//list [i].transform.position = new Vector3 ();
-			Vector3 noise = new Vector3(Random.Range(-10f,10f), Random.Range(-10f,10f), Random.Range(-10f,10f));
+			Vector3 noise = new Vector3(Random.Range(-10f,10f), Random.Range(-15f,15f), Random.Range(-10f,10f));
 			((GameObject)list[i]).transform.position = moonVector/(list.Count+1) * (i+1)+noise;
 		}
 

@@ -48,8 +48,8 @@ public class MoonFacts : MonoBehaviour
     Fact weighOnMoon = new Fact("Moon Facts", "How much would you weigh in the moon?", "1/6th of what you weigh on Earth", "weigthMoon");
     Fact internationalSpaceStation = new Fact("Human exploration", "People living on the moon?", "To explore the Moon and Mars in the future, we will need modules for astronauts to live and work. We will need life-support systems to clean and maintain the air and prevent dust from the surface of the Moon or Mars contaminating the habitat.".addEndLines(), "moonStation");
     Fact luna9 = new Fact("Spacecrafts", "Luna 9", "The Soviet Luna 9 spacecraft was the first to achieve a soft landing on the Moon and to transmit photographs from lunar surface back to Earth.".addEndLines(), "luna9");
-    Fact howLongDay = new Fact("Moon Facts", "How long is a day in the moon?", "A lunar day is 27.3 Earth days long", "");
-    Fact temperature = new Fact("Moon Facts", "Whats the temperature on the moon surface?", "Between -233°C and +123 °C", "");
+    Fact howLongDay = new Fact("Moon Facts", "How long is a day in the moon?", "A lunar day is 27.3 Earth days long", "solar_eclipse");
+    Fact temperature = new Fact("Moon Facts", "Whats the temperature on the moon surface?", "Between -233°C and +123 °C", "moon-temperature");
     Fact howManyPeopleWalkOn = new Fact("Moon Facts", "How many people walk on the moon?", "12 astronauts during the Apollo programme (1969 – 1972)".addEndLines(), "numberPeople");
     Fact howLongDoesItTake = new Fact("Moon Facts", "How long does it take to go to the moon?", "About 3 days", "longTake");
     Fact whyLooksBigger = new Fact("Moon Facts", "Why does the moon look bigger at times?", "Due to its elliptical orbit", "hugeMoon");
