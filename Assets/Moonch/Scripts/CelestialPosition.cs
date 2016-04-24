@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CelestialPosition : MonoBehaviour {
@@ -8,9 +9,15 @@ public class CelestialPosition : MonoBehaviour {
     double lastPhi;
     double lastTheta;
 	GameObject moonImage;
+	public int countDown = 10;
+	private float delay = 5f;
+	private float nextUsage;
+	private Text countDownText;
     IEnumerator Start()
     {
+		nextUsage = Time.time + delay;
 		moonImage = GameObject.Find ("/MoonImage");
+		//countDownText = GameObject.Find("/Canvas/CountDown").GetComponent<Text>();
 		//Debug.Log (moonImage.transform);
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser)
@@ -50,6 +57,11 @@ public class CelestialPosition : MonoBehaviour {
         //Input.location.Stop();
     }
 
+	private IEnumerator Coroutine() {
+		countDown--;
+		yield return new WaitForSeconds(5);
+	}
+
     protected void Update()
     {
         double latitude = Input.location.lastData.latitude; //-17.3663289;
@@ -74,12 +86,29 @@ public class CelestialPosition : MonoBehaviour {
 		double angle = Math.Atan2 (lastTheta, -lastPhi)+Math.PI;
 		double radius = 0.2f;
 		double module = Math.Sqrt (lastTheta*lastTheta + lastPhi*lastPhi);
+		//StartCoroutine (Coroutine ());
+		//if (Time.time > nextUsage) {
+		//	nextUsage = Time.deltaTime + delay;
+		//	countDown--;
+		//	if (countDown >= 0) {
+		//		countDownText.text = countDown.ToString();
+		//	}
+		//}
+		//countDown--;
 
 		if (module < (4 * Math.PI) / 180) {
+			//Application.LoadLevel ("Test");
 			moonImage.transform.position = new Vector3 (20f, 20f, 0f);
+			//Application.LoadLevel ("Test");
+			//countDown--;
+			//countDownText.text = countDown.ToString();
 		} else {
+			//countDown = 10;
 			moonImage.transform.position = new Vector3 (0.5f, 0.5f, 0f) + new Vector3((float)(radius*Math.Cos(angle)), (float)(radius*Math.Sin(angle)), 0f);
 		}
+
+		//countDown--;
+
 
 		//moonImage.transform.position = new Vector3 (0.3f, 0.3f, 0f);
 		/*if (Math.Abs (lastPhi) < (4*Math.PI)/180) {
@@ -115,9 +144,7 @@ public class CelestialPosition : MonoBehaviour {
         deltaTheta = sTarget.theta - sCamera.theta;
 
         if (deltaPhi > Math.PI) deltaPhi = -2 * Math.PI + deltaPhi;
-
-        //if (deltaPhi < 0) deltaPhi = 2 * Math.PI + deltaPhi;
-       // if (deltaTheta < 0) deltaTheta = 2 * Math.PI + deltaTheta;
+        else if (deltaPhi < -Math.PI) deltaPhi = 2 * Math.PI + deltaPhi;
     }
 
     double toDeg(double radian)

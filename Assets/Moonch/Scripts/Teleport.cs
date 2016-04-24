@@ -35,7 +35,7 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder {
     //GetComponent<Renderer>().material.color = gazedAt ? Color.green : Color.red;
 	//Application.LoadLevel ("Other");
 		if (gazedAt) {
-			Application.LoadLevel ("Other");
+			Application.LoadLevel ("Test");
 		}
 	//GetComponent<Renderer>().material.color = gazedAt ? Color.green : Color.red;
   }
