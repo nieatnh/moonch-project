@@ -104,7 +104,7 @@ public class CelestialPosition : MonoBehaviour {
 			//Application.LoadLevel ("Test");
 			//moonImage.transform.position = new Vector3 (200f, 200f, 0f);
 			moonTargetCardboard.rectTransform.localPosition = new Vector3 (200f, 200f, 0f);
-			//Application.LoadLevel ("Test");
+			Application.LoadLevel ("Space");
 			//countDown--;
 			//countDownText.text = countDown.ToString();
 		} else {
