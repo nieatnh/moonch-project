@@ -5,12 +5,14 @@ public class MoonController : MonoBehaviour {
 
 	private float distance;
 	// Use this for initialization
+
+
 	void Start () {
 		distance = (float)CelestialScale.MoonScale (2f).AproxDistance;
 
 		GameObject moon = GameObject.Find ("/Moon");
 
-		GameObject cardBoardObject = GameObject.Find ("/Moon/CardObject");
+		//GameObject cardBoardObject = GameObject.Find ("/Moon/CardObject");
 		//cardBoardObject.transform.position = moon.transform.position;
 		GameObject cardBoardObject1 = GameObject.Find ("/Moon/CardObject1");
 		GameObject cardBoardObject2 = GameObject.Find ("/Moon/CardObject2");
@@ -24,7 +26,7 @@ public class MoonController : MonoBehaviour {
 		GameObject cardBoardObject10 = GameObject.Find ("/Moon/CardObject10");
 
 		ArrayList list = new ArrayList ();
-		list.Add (cardBoardObject);
+		//list.Add (cardBoardObject);
 		list.Add (cardBoardObject1);
 		list.Add (cardBoardObject2);
 		list.Add (cardBoardObject3);
@@ -37,7 +39,7 @@ public class MoonController : MonoBehaviour {
 		list.Add (cardBoardObject10);
 
 
-		Debug.Log (distance);
+		//Debug.Log (distance);
 		Vector3 moonVector = new Vector3(0f, 0f, -distance);
 		transform.position = moonVector;
 		Random random = new Random ();
@@ -48,9 +50,18 @@ public class MoonController : MonoBehaviour {
 		}
 
 	}
-	
+
+	void OnTriggerEnter(Collider other)
+	{
+		//Debug.Log ("on trigger entert");
+		if (other.gameObject.tag == "Player"){
+			Application.LoadLevel ("FinalScene");
+		}   
+	}
+
 	// Update is called once per frame
 	void Update () {
+
 
 		//double grab = Mathf.Floor (Random.Range (0f,));
 	
