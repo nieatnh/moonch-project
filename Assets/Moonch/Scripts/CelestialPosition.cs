@@ -9,6 +9,7 @@ public class CelestialPosition : MonoBehaviour {
     double lastPhi;
     double lastTheta;
 	GameObject moonImage;
+	RawImage moonTargetCardboard;
 	public int countDown = 10;
 	private float delay = 5f;
 	private float nextUsage;
@@ -17,6 +18,8 @@ public class CelestialPosition : MonoBehaviour {
     {
 		nextUsage = Time.time + delay;
 		moonImage = GameObject.Find ("/MoonImage");
+		moonTargetCardboard = GameObject.Find ("/MainCamera/Head/Main Camera/Canvas/MoonTarget").GetComponent<RawImage>();
+		Debug.Log (moonTargetCardboard);
 		//countDownText = GameObject.Find("/Canvas/CountDown").GetComponent<Text>();
 		//Debug.Log (moonImage.transform);
         // First, check if user has location service enabled
@@ -85,6 +88,7 @@ public class CelestialPosition : MonoBehaviour {
 
 		double angle = Math.Atan2 (lastTheta, -lastPhi)+Math.PI;
 		double radius = 0.2f;
+		double carboardRadius = 25f;
 		double module = Math.Sqrt (lastTheta*lastTheta + lastPhi*lastPhi);
 		//StartCoroutine (Coroutine ());
 		//if (Time.time > nextUsage) {
@@ -98,15 +102,24 @@ public class CelestialPosition : MonoBehaviour {
 
 		if (module < (4 * Math.PI) / 180) {
 			//Application.LoadLevel ("Test");
-			moonImage.transform.position = new Vector3 (20f, 20f, 0f);
+			//moonImage.transform.position = new Vector3 (200f, 200f, 0f);
+			moonTargetCardboard.rectTransform.localPosition = new Vector3 (200f, 200f, 0f);
 			//Application.LoadLevel ("Test");
 			//countDown--;
 			//countDownText.text = countDown.ToString();
 		} else {
 			//countDown = 10;
-			moonImage.transform.position = new Vector3 (0.5f, 0.5f, 0f) + new Vector3((float)(radius*Math.Cos(angle)), (float)(radius*Math.Sin(angle)), 0f);
+			//moonImage.transform.position = new Vector3 (0.5f, 0.5f, 0f) + new Vector3((float)(radius*Math.Cos(angle)), 
+			//	(float)(1.5f * radius*Math.Sin(angle)), 0f);
+			moonTargetCardboard.rectTransform.localPosition = new Vector3 (0.0f, 0.0f, 0f) + new Vector3((float)(1.5f*carboardRadius*Math.Cos(angle)), 
+				(float)(carboardRadius*Math.Sin(angle)), 0f);
 		}
 
+
+		//moonTargetCardboard.transform.position = new Vector3 ();
+
+		//moonTargetCardboard.rectTransform.localPosition = new Vector3 (-20,-20,0);
+		//moonTargetCardboard.rectTransform = new RectTransform(
 		//countDown--;
 
 
