@@ -7,9 +7,11 @@ public class CelestialPosition : MonoBehaviour {
     LocationInfo location = new LocationInfo();
     double lastPhi;
     double lastTheta;
-
+	GameObject moonImage;
     IEnumerator Start()
     {
+		moonImage = GameObject.Find ("/MoonImage");
+		//Debug.Log (moonImage.transform);
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser)
             yield break;
@@ -67,6 +69,26 @@ public class CelestialPosition : MonoBehaviour {
 
         CalculateHelper(cameraDirection, celestialDirection, out lastPhi, out lastTheta);
 
+		//double degLastPhi = lastPhi*180/Math.PI;
+
+		double angle = Math.Atan2 (lastTheta, -lastPhi)+Math.PI;
+		double radius = 0.2f;
+		double module = Math.Sqrt (lastTheta*lastTheta + lastPhi*lastPhi);
+
+		if (module < (4 * Math.PI) / 180) {
+			moonImage.transform.position = new Vector3 (20f, 20f, 0f);
+		} else {
+			moonImage.transform.position = new Vector3 (0.5f, 0.5f, 0f) + new Vector3((float)(radius*Math.Cos(angle)), (float)(radius*Math.Sin(angle)), 0f);
+		}
+
+		//moonImage.transform.position = new Vector3 (0.3f, 0.3f, 0f);
+		/*if (Math.Abs (lastPhi) < (4*Math.PI)/180) {
+			moonImage.transform.position = new Vector3 (0.5f, 0.5f, 0f);
+		} else if(lastPhi < 0){
+			moonImage.transform.position = new Vector3 (0.3f, 0.5f, 0f);
+		} else if(lastPhi > 0){
+			moonImage.transform.position = new Vector3 (0.7f, 0.5f, 0f);
+		}
         /*
         float r = 3;
         v.y = 1/3.0f;
