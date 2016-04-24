@@ -1,4 +1,4 @@
-==MOONCH==
+# MOONCH
 
 Moonch is a VR educative game for smarth phones and a 3D version for tablets, the game will allow our children to locate the moon and others planetary bodies, any time of day, even below horizon.
 
@@ -7,12 +7,12 @@ When they find the moon, they start a fun trip to the moon in their space ship, 
 The children will use this technology to learn in a fun way.
 Explore, learn and have fun with Moonch!
 
-===Technology===
+## Technology
 
 * Unity 3D
 * Cardboard SDK
 
-===Resources===
+## Resources
 
 * Interactive Guide to the Moon http://lunarexploration.esa.int
 * Apollo Image Atlas: https://data.nasa.gov/external-dataset?datasetId=bdjz-sjmr
