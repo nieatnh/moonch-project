@@ -8,7 +8,7 @@ public class MoonFacts : MonoBehaviour
     public int selectedIndex;
     List<Fact> moonFactsCollection = new List<Fact>();
 
-    class Fact
+    public class Fact
     {
         public string title;
         public string question;
@@ -23,6 +23,7 @@ public class MoonFacts : MonoBehaviour
             this.imagePath = imagePath;
         }
     }
+
     Fact howBig = new Fact("Moon Facts", "How big is the moon?", "Moon diameter = 3,475 km \n Earth diameter = 12,742 km", "earthSize");
     Fact howFar = new Fact("Moon Facts", "How far is the moon?", "Min. 363,000, max 405,000 km", "earthSize");
     Fact howLongDay = new Fact("Moon Facts", "How long is a day in the moon?", "A lunar day is 27.3 Earth days long", "");

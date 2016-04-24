@@ -9,6 +9,8 @@ public class CardManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cameraFly = player.GetComponentInParent<CameraFly>();
+        playerFuel = player.GetComponent<PlayerFuel>();
+        playerCards = player.GetComponent<PlayerCards>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -18,6 +20,9 @@ public class CardManager : MonoBehaviour
         {
             moonFacts.SetActive(true);
             moonFacts.GetComponent<MoonFacts>().selectedIndex = cardIndex;
+
+            playerCards.CollectCard();
+            playerFuel.RefillFuel(fuelIncrement);
 
             // Destroy the card from the game
             GameObject.Destroy(transform.parent.gameObject);
@@ -33,4 +38,7 @@ public class CardManager : MonoBehaviour
 
     private GameObject player;
     private CameraFly cameraFly;
+    private PlayerFuel playerFuel;
+    private PlayerCards playerCards;
+    private int fuelIncrement = 10;
 }

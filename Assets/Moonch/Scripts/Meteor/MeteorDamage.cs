@@ -2,7 +2,6 @@
 
 public class MeteorDamage : MonoBehaviour
 {
-
     public int damageAmount = 10;
 
     void Awake()

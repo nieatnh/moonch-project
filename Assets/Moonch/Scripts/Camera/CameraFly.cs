@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class CameraFly : MonoBehaviour
 {
@@ -9,6 +9,12 @@ public class CameraFly : MonoBehaviour
     public bool gamePaused = false;
     public bool smooth = true;
     public float acceleration = 0.1f;
+    private float originalSpeed;
+
+    void Awake()
+    {
+        originalSpeed = speed;
+    }
 
     void Update()
     {
@@ -55,10 +61,23 @@ public class CameraFly : MonoBehaviour
                 actSpeed = 0.0f;
         }
 
+        Debug.Log("SPEED: " + speed);
         if (smooth)
             transform.Translate(lastDir * actSpeed * speed * Time.deltaTime);
         else
             transform.Translate(dir * speed * Time.deltaTime);
+    }
+
+    internal void RunPowerUp(float powerAcceleration, float duration)
+    {
+        speed *= powerAcceleration;
+        StartCoroutine(TerminatePowerUp(duration));
+    }
+
+    IEnumerator TerminatePowerUp(float time)
+    {
+        yield return new WaitForSeconds(time);
+        speed = originalSpeed;
     }
 
     public void OnPauseGame()
