@@ -47,6 +47,10 @@ public class CelestialPosition : MonoBehaviour {
 		
 		
 		moonTargetCardboard = GameObject.Find ("/MainCamera/Head/Main Camera/Canvas/MoonTarget").GetComponent<RawImage>();
+		
+        phaseText = GameObject.Find("/MainCamera/Head/Main Camera/Canvas/PhaseText").GetComponent<Text>();
+        distanceText = GameObject.Find("/MainCamera/Head/Main Camera/Canvas/DistanceText").GetComponent<Text>();
+		
 		Debug.Log (moonTargetCardboard);
 		//countDownText = GameObject.Find("/Canvas/CountDown").GetComponent<Text>();
 		//Debug.Log (moonImage.transform);
@@ -109,6 +113,7 @@ public class CelestialPosition : MonoBehaviour {
         //ChangeMoonPhaseTexture(phase);
 		
 		double distance = CelestialScale.MoonScale(0.04f).AproxDistance;
+
         double azimuth = moonPosition.azimuth + Mathf.PI;
 
         Vector3 v = new Vector3();
@@ -178,9 +183,9 @@ public class CelestialPosition : MonoBehaviour {
 
     void OnGUI()
     {
-        GUIStyle guiStyle = new GUIStyle();
-        guiStyle.fontSize = 100;
-        GUI.Label(new Rect(0, 0, 500, 500), String.Format("Phi: {0}\nTheta: {1}", toDeg(lastPhi), toDeg(lastTheta)), guiStyle);
+        //GUIStyle guiStyle = new GUIStyle();
+        //guiStyle.fontSize = 100;
+        //GUI.Label(new Rect(0, 0, 500, 500), String.Format("Phi: {0}\nTheta: {1}", toDeg(lastPhi), toDeg(lastTheta)), guiStyle);
     }
 
 
