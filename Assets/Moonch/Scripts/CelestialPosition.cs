@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CelestialPosition : MonoBehaviour {
 
@@ -14,10 +15,37 @@ public class CelestialPosition : MonoBehaviour {
 	private float delay = 5f;
 	private float nextUsage;
 	private Text countDownText;
+	
+	private Text phaseText, distanceText;
+    private GameObject moon;
+    private Dictionary<string, Texture2D> moonPhaseTextures;
+
+    private string lastTexture;
+
+    void StartTextures()
+    {
+        moonPhaseTextures = new Dictionary<string, Texture2D>();
+
+        foreach (var iPhase in MoonPhase.Phases)
+        {
+            Texture2D texture = Resources.Load<Texture2D>(iPhase.ImagePath);
+            moonPhaseTextures.Add(iPhase.ImagePath, texture);
+        }
+    }
+	
     IEnumerator Start()
     {
 		nextUsage = Time.time + delay;
 		moonImage = GameObject.Find ("/MoonImage");
+		
+		moon = GameObject.Find("/Moon");
+
+        StartTextures();
+
+        phaseText = GameObject.Find("/MainCamera/Head/Main Camera/Canvas/PhaseText").GetComponent<Text>();
+        distanceText = GameObject.Find("/MainCamera/Head/Main Camera/Canvas/DistanceText").GetComponent<Text>();
+		
+		
 		moonTargetCardboard = GameObject.Find ("/MainCamera/Head/Main Camera/Canvas/MoonTarget").GetComponent<RawImage>();
 		Debug.Log (moonTargetCardboard);
 		//countDownText = GameObject.Find("/Canvas/CountDown").GetComponent<Text>();
@@ -72,7 +100,15 @@ public class CelestialPosition : MonoBehaviour {
 
         var suncalc = new SunCalcX();
         var moonPosition = suncalc.getMoonPosition(DateTime.UtcNow, latitude, longitude);
-        double distance = CelestialScale.MoonScale(0.1f).AproxDistance;
+        var moonIllumination = suncalc.getMoonIllumination(DateTime.UtcNow);
+        var phase = MoonPhase.GetMoonPhase((float)moonIllumination.phase);
+
+        phaseText.text = phase.Name;
+        distanceText.text = moonPosition.distance + " Km.";
+
+        //ChangeMoonPhaseTexture(phase);
+		
+		double distance = CelestialScale.MoonScale(0.04f).AproxDistance;
         double azimuth = moonPosition.azimuth + Mathf.PI;
 
         Vector3 v = new Vector3();
@@ -104,7 +140,7 @@ public class CelestialPosition : MonoBehaviour {
 			//Application.LoadLevel ("Test");
 			//moonImage.transform.position = new Vector3 (200f, 200f, 0f);
 			moonTargetCardboard.rectTransform.localPosition = new Vector3 (200f, 200f, 0f);
-			Application.LoadLevel ("Space");
+			Application.LoadLevel ("GoToTheMoonScene");
 			//countDown--;
 			//countDownText.text = countDown.ToString();
 		} else {

@@ -313,9 +313,9 @@ public class SunCalcX : SunCalcGenerals {
     }
 
     public class MoonIllumination {
-        double fraction;
-        double phase;
-        double angle;
+        public double fraction;
+		public double phase;
+		public double angle;
 
         public MoonIllumination(double fraction, double phase, double angle) {
             this.fraction = fraction;
