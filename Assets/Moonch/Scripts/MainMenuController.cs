@@ -15,13 +15,13 @@ public class MainMenuController : MonoBehaviour {
 
     public void StartGame()
     {
-		Debug.Log ("Test");
-        Application.LoadLevel("FindMoonScene");
+		//Debug.Log ("Test");
+        Application.LoadLevel("GoToTheMoonScene");
     }
 
     public void finishGame()
     {
-		Debug.Log ("finish");
+		//Debug.Log ("finish");
         Application.Quit();
     }
 

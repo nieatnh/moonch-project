@@ -40,7 +40,7 @@ public class MoonPhase
             if (i == 0 || diff < minDistance)
             {
                 idx = i;
-                diff = minDistance;
+                minDistance = diff;
             }
         }
         return MoonPhase.Phases[idx];
