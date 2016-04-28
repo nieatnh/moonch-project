@@ -53,7 +53,7 @@ public class SunCalcGenerals
     public static DateTime fromJulian(double j)  { 
         return DateTimeTools.FromUnixTime((long)((j + 0.5 - J1970) * dayMs)); 
     }
-    public double toDays(DateTime date)   { 
+    public static double toDays(DateTime date)   { 
         return SunCalcGenerals.toJulian(date) - J2000;
     }
     #endregion
@@ -156,7 +156,7 @@ public class SunCalcGenerals
 }
 
 
-public class SunCalcX : SunCalcGenerals { 
+public class SunCalc : SunCalcGenerals { 
     
     public class TimeInformation {
         public double angle;
@@ -181,7 +181,7 @@ public class SunCalcX : SunCalcGenerals {
 
     // calculates sun position for a given date and latitude/longitude
 
-    public Position getPosition(DateTime date, double lat, double lng) {
+    public static Position getPosition(DateTime date, double lat, double lng) {
         double lw = rad * -lng;
         double phi = rad * lat;
         double d = toDays(date);
@@ -192,7 +192,7 @@ public class SunCalcX : SunCalcGenerals {
     }
 
     // sun times configuration (angle, morning name, evening name)
-    List<TimeInformation> times = new List<TimeInformation>(){
+    static List<TimeInformation> times = new List<TimeInformation>(){
         new TimeInformation(-0.833, "sunrise", "sunset"),
         new TimeInformation(-0.3, "sunriseEnd", "sunsetStart"),
         new TimeInformation(-6, "dawn", "dusk"),
@@ -233,7 +233,7 @@ public class SunCalcX : SunCalcGenerals {
         }
     }
 
-    public TimeResult getTimes(DateTime date, double lat, double lng)
+    public static TimeResult getTimes(DateTime date, double lat, double lng)
     {
 
         double lw = rad * -lng,
@@ -272,7 +272,7 @@ public class SunCalcX : SunCalcGenerals {
             this.dist = dist;
         }
     }
-    public MoonCoordinates moonCoords(double d) { // geocentric ecliptic coordinates of the moon
+    public static MoonCoordinates moonCoords(double d) { // geocentric ecliptic coordinates of the moon
         double L = rad * (218.316 + 13.176396 * d), // ecliptic longitude
             M = rad * (134.963 + 13.064993 * d), // mean anomaly
             F = rad * (93.272 + 13.229350 * d),  // mean distance
@@ -297,7 +297,7 @@ public class SunCalcX : SunCalcGenerals {
         }
     }
 
-    public MoonPosition getMoonPosition(DateTime date, double lat, double lng) {
+    public static MoonPosition getMoonPosition(DateTime date, double lat, double lng) {
         double lw  = rad * -lng, phi = rad * lat,
             d   = toDays(date);
 
@@ -328,7 +328,7 @@ public class SunCalcX : SunCalcGenerals {
     // based on http://idlastro.gsfc.nasa.gov/ftp/pro/astro/mphase.pro formulas and
     // Chapter 48 of "Astronomical Algorithms" 2nd edition by Jean Meeus (Willmann-Bell, Richmond) 1998.
 
-    public MoonIllumination getMoonIllumination(DateTime date) {
+    public static MoonIllumination getMoonIllumination(DateTime date) {
 
         var d = toDays(date);
         var s = sunCoords(d);
@@ -363,7 +363,7 @@ public class SunCalcX : SunCalcGenerals {
     
 // calculations for moon rise/set times are based on http://www.stargazing.net/kepler/moonrise.html article
 
-    public MoonTimes getMoonTimes(DateTime date, double lat, double lng, bool inUTC) {
+    public static MoonTimes getMoonTimes(DateTime date, double lat, double lng, bool inUTC) {
         var t = date;
 
         //if (inUTC) t.setUTCHours(0, 0, 0, 0);
