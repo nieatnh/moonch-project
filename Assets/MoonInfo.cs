@@ -63,9 +63,8 @@ public class MoonInfo : MonoBehaviour {
 		double latitude = Input.location.lastData.latitude; //-17.3663289;
 		double longitude = Input.location.lastData.longitude; //-66.1758675;
 
-		var suncalc = new SunCalcX();
-		var moonPosition = suncalc.getMoonPosition(DateTime.UtcNow, latitude, longitude);
-        var moonIllumination = suncalc.getMoonIllumination(DateTime.UtcNow);
+		var moonPosition = SunCalc.getMoonPosition(DateTime.UtcNow, latitude, longitude);
+        var moonIllumination = SunCalc.getMoonIllumination(DateTime.UtcNow);
         var phase = MoonPhase.GetMoonPhase((float)moonIllumination.phase);
 
         phaseText.text = phase.Name;
