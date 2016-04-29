@@ -61,7 +61,7 @@ public class CameraFly : MonoBehaviour
                 actSpeed = 0.0f;
         }
 
-        Debug.Log("SPEED: " + speed);
+        //Debug.Log("SPEED: " + speed);
         if (smooth)
             transform.Translate(lastDir * actSpeed * speed * Time.deltaTime);
         else

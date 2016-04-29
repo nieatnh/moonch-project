@@ -10,7 +10,7 @@ public class CelestialCameraHelper : MonoBehaviour
     IEnumerator Start() 
     {
         moonTargetCardboard = GameObject.Find("/MainCamera/Head/Main Camera/Canvas/MoonTarget").GetComponent<RawImage>();
-        Debug.Log(moonTargetCardboard);
+        //Debug.Log(moonTargetCardboard);
         celestialManagers = new List<ICelestialPosition>();
         celestialManagers.Add(CelestialDispatcher.CreateInstance(CelestialDispatcher.ECelestials.Moon));
 
