@@ -37,7 +37,7 @@ public class MoonController : MonoBehaviour {
 		list.Add (cardBoardObject10);
 
 
-		Debug.Log (distance);
+//		Debug.Log (distance);
 		Vector3 moonVector = new Vector3(0f, 0f, -distance);
 		transform.position = moonVector;
 		Random random = new Random ();
@@ -47,6 +47,12 @@ public class MoonController : MonoBehaviour {
 			((GameObject)list[i]).transform.position = moonVector/(list.Count+1) * (i+1)+noise;
 		}
 
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.tag == "Player") {
+			Application.LoadLevel ("LandingMoonScene");
+		}
 	}
 	
 	// Update is called once per frame
